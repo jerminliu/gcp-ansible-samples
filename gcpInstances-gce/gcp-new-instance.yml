@@ -1,0 +1,59 @@
+- name: Create instance("{{ instances }}")
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    service_account_email: smartcompare-test@smartcompare-test.iam.gserviceaccount.com
+    credentials_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json
+    project_id: smartcompare-test 
+    machine_type: n1-standard-1
+    image: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/family/ubuntu-1404-lts
+    zone: us-central1-a
+  tasks:
+    - name: get ssh key
+      command: cat ~/.ssh/gce.pub
+      register: ssh_key
+    - debug: msg="{{ssh_key.stdout}}"
+      
+    - name: Launch ("{{ instances }}")
+      gce:
+          instance_names: "{{ instances }}"
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          # metadata: '{"sshKeys":"gce:{{ ssh_key.stdout }}"}'
+
+          # state: absent
+          # disk_auto_delete: true
+          # preemptible: true
+          zone: "{{zone}}"
+          tags: ansible
+      register: gce
+    # - name: add ssh key
+    #   command: gcloud compute instances add-metadata {{ instances }} --metadata-from-file ssh-keys=~/.ssh/gce.pub --zone={{ zone }}
+
+    - name: Wait for SSH to come up ("{{ instances }}")
+      wait_for: host={{item.public_ip}} port=22 delay=10 timeout=60
+      with_items: "{{gce.instance_data}}"
+
+    - name: Add host to groupname ("{{ instances }}")
+      add_host: hostname={{ item.public_ip }} groupname=new_instances
+      with_items: "{{ gce.instance_data }}"
+    - name: Save host data ("{{ instances }}")
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: gce_instances
+      with_items: "{{ gce.instance_data }}"
+
+    # - name: Launch test
+    #   gce:
+    #       instance_names: test
+    #       machine_type: "{{ machine_type }}"
+    #       image: "{{ image }}"
+    #       service_account_email: "{{ service_account_email }}"
+    #       credentials_file: "{{ credentials_file }}"
+    #       project_id: "{{ project_id }}"
+    #       state: started

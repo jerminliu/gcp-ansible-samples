@@ -1,0 +1,27 @@
+- name: Start/Stop instances
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    service_account_email: smartcompare-test@smartcompare-test.iam.gserviceaccount.com
+    credentials_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json
+    project_id: smartcompare-test 
+    machine_type: n1-standard-1
+    image: ubuntu-1804-lts
+
+  tasks:
+
+    - name: Start/Stop instances
+
+      gce:
+        instance_names: "{{ item }}"
+        # zone: "{{ zone }}"
+        project_id: "{{ project_id }}"
+        credentials_file: "{{ credentials_file }}"
+        service_account_email: "{{ service_account_email }}"
+        state: "{{state}}"
+      with_items:
+        - lb01
+        - app01
+        - db01

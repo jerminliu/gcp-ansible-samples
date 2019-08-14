@@ -1,0 +1,5 @@
+plugin: gcp_compute
+projects:
+  - smartcompare-test
+auth_kind: serviceaccount
+service_account_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json
