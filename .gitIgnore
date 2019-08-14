@@ -3,3 +3,5 @@ packtvirtual/**
 .vagrant/**
 .idea/*
 .vagrant/*
+**/env.sh
+venv/

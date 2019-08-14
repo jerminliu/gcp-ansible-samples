@@ -1,0 +1,15 @@
+---
+plugin: gcp_compute
+zones:
+  - europe-west3-a
+projects:
+  - smartcompare-test
+filters: []
+hostnames:
+  - name
+groups:
+  webservers: "'web' in name"
+scopes:
+  - https://www.googleapis.com/auth/compute
+service_account_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json
+auth_kind: serviceaccount
