@@ -1,7 +1,7 @@
 ---
 plugin: gcp_compute
-zones:
-  - europe-west3-a
+#zones:
+#  - europe-west3-a
 projects:
   - smartcompare-test
 filters: []

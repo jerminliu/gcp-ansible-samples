@@ -15,3 +15,12 @@ ansible-inventory -i inventories/webservers.yml --graph
 ```bash
 python $(which ansible-inventory)  -i inventories/server_gcp.yml --graph
 ```
+
+```bash
+./env.sh
+
+```
+
+```bash
+ansible-playbook -t create playbooks/compute_infra.yml
+```
