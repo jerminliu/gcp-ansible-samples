@@ -24,3 +24,7 @@ python $(which ansible-inventory)  -i inventories/server_gcp.yml --graph
 ```bash
 ansible-playbook -t create playbooks/compute_infra.yml
 ```
+
+```bash
+ansible-playbook -t delete playbooks/compute_infra.yml
+```
