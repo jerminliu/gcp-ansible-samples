@@ -26,9 +26,9 @@
     network: "{{network}}"
     allowed:
     - ip_protocol: tcp
-      ports: ['80','22']
+      ports: ['80','22','8080']
     target_tags:
-      - apache-http-server
+      - jenkins
     source_ranges: ['0.0.0.0/0']
     project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present
@@ -72,6 +72,6 @@
     project: "{{ lookup('env','GCP_PROJECT') }}"
     tags:
       items:
-        - apache-http-server
+        - jenkins
         - webserver
   register: instance

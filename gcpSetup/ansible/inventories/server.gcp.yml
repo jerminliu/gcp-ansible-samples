@@ -5,10 +5,10 @@ plugin: gcp_compute
 projects:
   - smartcompare-test
 filters: []
-hostnames:
-  - name
+#hostnames:
+#  - name
 groups:
-  webservers: "'web' in name"
+  webservers: "'jenkins-gcp' in name"
 scopes:
   - https://www.googleapis.com/auth/compute
 service_account_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json

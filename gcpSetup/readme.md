@@ -28,3 +28,8 @@ ansible-playbook -t create playbooks/compute_infra.yml
 ```bash
 ansible-playbook -t delete playbooks/compute_infra.yml
 ```
+
+Install sudo pip install requests google-auth
+```bash
+ansible-playbook   -i inventories webservers playbooks/jenkins.yml
+```
