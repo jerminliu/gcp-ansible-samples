@@ -1,0 +1,10 @@
+---
+- name: Demo app setup
+  hosts:
+    - demoapp
+  gather_facts: true
+  become: yes
+  become_method: sudo
+  tags: [demoapp]
+  roles:
+    - demoapp

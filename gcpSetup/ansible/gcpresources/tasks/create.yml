@@ -29,6 +29,7 @@
       ports: ['80','22','8080']
     target_tags:
       - jenkins
+      - demoapp
     source_ranges: ['0.0.0.0/0']
     project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present

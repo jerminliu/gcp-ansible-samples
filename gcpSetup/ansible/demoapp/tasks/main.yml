@@ -1,0 +1,21 @@
+---
+- name: Update the software package repository
+  yum:
+    name: "*"
+    update_cache: yes
+
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - java-1.8.0-openjdk
+    - wget
+
+- name: copy demo app source
+  copy: src=demo.jar dest=/home/ansiible mode=0755
+
+- name: run the demo app
+  shell: "(cd /home/ansiibl; nohup java -jar demo.jar >/dev/null 2>&1 &)"
+  async: 10
+  poll: 0
