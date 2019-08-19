@@ -1,0 +1,17 @@
+---
+- name: Start or stop resources
+  hosts: localhost
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  connection: local
+  vars:
+    - instance_name:  jmeter-demo-app
+    - state:  stopped
+
+  tasks:
+  - name: Start/stop an instance
+    gcp_compute_instance:
+      state: "{{state}}"
+      name: "{{ instance_name }}"
+      project: "{{ lookup('env','GCP_PROJECT') }}"

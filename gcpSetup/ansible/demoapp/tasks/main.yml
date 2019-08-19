@@ -13,9 +13,9 @@
     - wget
 
 - name: copy demo app source
-  copy: src=demo.jar dest=/home/ansiible mode=0755
+  copy: src=demo.jar dest=/home/ansible mode=0755
 
 - name: run the demo app
-  shell: "(cd /home/ansiibl; nohup java -jar demo.jar >/dev/null 2>&1 &)"
+  shell: "(cd /home/ansible; nohup java -jar demo.jar >/dev/null 2>&1 &)"
   async: 10
   poll: 0

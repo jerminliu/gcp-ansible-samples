@@ -1,0 +1,9 @@
+---
+- name: Create GCP resources
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+    instance_name: jmeter-demo-app
+  roles:
+    - role: gcpresources

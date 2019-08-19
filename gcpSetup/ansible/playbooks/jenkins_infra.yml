@@ -3,6 +3,7 @@
   hosts: localhost
   gather_facts: no
   connection: local
-
+  vars:
+    instance_name: jenkins-gcp
   roles:
     - role: gcpresources
