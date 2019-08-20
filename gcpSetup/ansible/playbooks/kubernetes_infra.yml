@@ -1,0 +1,11 @@
+---
+- name: Create GCP resources for kubernetes master and nodes
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+    instance_name: kube-master
+    disk_source_image: projects/ubuntu-os-cloud/global/images/ubuntu-1604-xenial-v20190816
+    machine_type: n1-standard-2
+  roles:
+    - role: gcpresources

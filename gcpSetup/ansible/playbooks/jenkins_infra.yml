@@ -5,5 +5,6 @@
   connection: local
   vars:
     instance_name: jenkins-gcp
+    disk_source_image: projects/centos-cloud/global/images/centos-7-v20190116
   roles:
     - role: gcpresources

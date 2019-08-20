@@ -5,3 +5,4 @@ instance_name: jenkins-gcp
 machine_type: n1-standard-1
 size_gb: 200
 ip_cidr_range: 172.16.0.0/28
+disk_source_image: projects/centos-cloud/global/images/centos-7-v20190116

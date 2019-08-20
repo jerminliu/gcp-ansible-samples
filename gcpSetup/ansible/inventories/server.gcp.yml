@@ -10,6 +10,8 @@ filters: []
 groups:
   webservers: "'jenkins-gcp' in name"
   demoapp: "'demo-app' in name"
+  kubemaster: "'kube-master' in name"
+  kubenode: "'kube-node' in name"
 scopes:
   - https://www.googleapis.com/auth/compute
 service_account_file: ~/Downloads/gcp/smartcompare-test-31e7409e37de.json

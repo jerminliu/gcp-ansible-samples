@@ -20,6 +20,7 @@
 - debug:
     msg: "{{network}}"
 
+#TODO add firewall rule for kubernetes internal communication
 - name: create a firewall
   gcp_compute_firewall:
     name: ansible-firewall
@@ -47,7 +48,7 @@
   gcp_compute_disk:
     name: "{{ instance_name }}"
     size_gb: "{{ size_gb }}"
-    source_image: 'projects/centos-cloud/global/images/centos-7-v20190116'
+    source_image: "{{disk_source_image}}"
     zone: "{{ zone }}"
     project: "{{ lookup('env','GCP_PROJECT') }}"
     state: present

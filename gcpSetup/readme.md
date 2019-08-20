@@ -13,7 +13,7 @@ ansible-inventory -i inventories/webservers.yml --graph
 ```
 
 ```bash
-python $(which ansible-inventory)  -i inventories/server_gcp.yml --graph
+python $(which ansible-inventory)  -i inventories/server.gcp.yml --graph
 ```
 
 ```bash
@@ -46,3 +46,12 @@ Run demo app playbook using gcp inventory
 ansible-playbook   -i inventories playbooks/demo-app.yml
 
 ```
+
+
+###Setting up kubernetes nodes using ansible commands
+```bash
+ansible-playbook -t create -e instance_name=kube-master playbooks/kubernetes_infra.yml
+ansible-playbook -t create -e instance_name=kube-node1 playbooks/kubernetes_infra.yml
+ansible-playbook -t create -e instance_name=kube-node2 playbooks/kubernetes_infra.yml
+```
+
