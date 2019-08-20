@@ -54,4 +54,19 @@ ansible-playbook -t create -e instance_name=kube-master playbooks/kubernetes_inf
 ansible-playbook -t create -e instance_name=kube-node1 playbooks/kubernetes_infra.yml
 ansible-playbook -t create -e instance_name=kube-node2 playbooks/kubernetes_infra.yml
 ```
+#####Setup initial things on instances and download dependencies needed for kubernetes
+```bash
+ansible-playbook -i inventories playbooks/kubernetes-initial.yml 
+ansible-playbook -i inventories playbooks/kubernetes-dependencies.yml 
+```
+#####Using gce dynamic inventory setup the master for kubernetes with cluster
 
+```bash
+ansible-playbook -i inventories playbooks/kubernetes-master.yml 
+
+```
+#####Using gce dynamic inventory node and make the node join the master using the token
+
+```bash
+ansible-playbook -i inventories playbooks/kubernetes-nodes.yml
+```

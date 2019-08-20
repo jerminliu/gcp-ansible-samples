@@ -1,0 +1,16 @@
+
+- hosts: kubemaster
+  become: yes
+  tasks:
+
+    - name: drain the node
+      shell: "kubectl drain {{node-name}} --delete-local-data --force --ignore-daemonsets"
+      args:
+        chdir: $HOME
+        creates: node_drained.txt
+
+    - name: delete node
+      shell: "kubectl delete node {{node-name}}"
+      args:
+        chdir: $HOME
+        creates: node_deleted.txt
